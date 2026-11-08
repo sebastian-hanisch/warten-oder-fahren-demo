@@ -78,6 +78,21 @@ Expander **📐 Mathematische Formulierung**.
 """
 )
 
+# erklaerseite:einfach:start (erzeugt von tools/set_demo_explainer.py (Website-Repo) aus tools/content/explainers/warten-oder-fahren-erklaert.json, nicht von Hand ändern)
+with st.expander("💬 In einfachen Worten"):
+    st.markdown(
+        """
+Aufträge treffen **über den Tag verteilt** ein, jeder mit einer Lieferfrist, und wenige Fahrzeuge fahren vom Depot. Die Demo vergleicht zwei Entscheidungen: **Warten oder Fahren** (wann startet eine geplante Route, sofort oder erst kurz vor der spätesten Abfahrt?) und **Annehmen oder Ablehnen** (nimmt man jeden planbaren Auftrag an oder nur, wenn die Zusatzstrecke den Erlös nicht übersteigt?).
+
+Gemessen wird der **Gewinn** je Tag (Erlös der angenommenen Aufträge minus gefahrene Strecke), die Politiken werden auf denselben Aufträgen paarweise verglichen. Das Ergebnis hängt an der Zahl der Aufträge je Stunde und an der Zahl der Fahrzeuge.
+
+Das Modell ist **deterministisch**: Fahrzeit gleich Strecke, keine Verspätungen. Wie sich das Ergebnis mit unsicheren Fahrzeiten ändert, zeigt die Demo nicht.
+
+[Ausführlich und verständlich erklärt, mit Fachteil](https://sebastianhanisch.net/warten-oder-fahren-erklaert.html)
+        """
+    )
+# erklaerseite:einfach:end
+
 with st.expander("So arbeitet die Politik", expanded=True):
     st.markdown(
         """
@@ -245,10 +260,26 @@ with st.expander("⚠️ Annahmen, Grenzen und bekannte Probleme"):
 st.markdown("---")
 
 with st.expander("📐 Mathematische Formulierung"):
+    # erklaerseite:lesehilfe:start (erzeugt von tools/set_demo_explainer.py (Website-Repo) aus tools/content/explainers/warten-oder-fahren-erklaert.json, nicht von Hand ändern)
     st.markdown(
         r"""
 **Lesehilfe.** Depot $0$, Aufträge $i$ mit Eingang $t_i$, Ort, Last $q_i$ und Frist $d_i = t_i + 120$, Fahrzeit gleich Strecke $c_{ij}$, $K$ Fahrzeuge der Kapazität $Q = 8$.
 
+| Symbol | Bedeutung |
+|---|---|
+| $0$ | Depot |
+| $i$, $t_i$, $q_i$, $d_i$ | Auftrag, sein Eingang, seine Last und seine Frist ($d_i = t_i + 120$) |
+| $c_{ij}$ | Fahrstrecke von $i$ nach $j$ (Fahrzeit gleich Strecke) |
+| $K$, $Q$ | Zahl der Fahrzeuge, Kapazität eines Fahrzeugs ($Q = 8$) |
+| $\ell$, $o_k$ | späteste Abfahrt einer Route, Fahrstrecke bis zum Stopp $k$ |
+| $\tau$ | Wartezeit der Politik $W_\tau$ ab Eingang des ältesten Auftrags |
+
+[Schritt für Schritt erklärt, mit Herleitung und Literatur](https://sebastianhanisch.net/warten-oder-fahren-erklaert.html#fachleute)
+        """
+    )
+    # erklaerseite:lesehilfe:end
+    st.markdown(
+        r"""
 **Späteste Abfahrt.** Eine Route $(i_1, \dots, i_m)$ mit Fahrstrecke $o_k = c_{0 i_1} + \dots + c_{i_{k-1} i_k}$ bis zum Stopp $k$ ist zulässig bei Abfahrt $s$, wenn $s + o_k \le d_{i_k}$ für alle $k$, also $s \le \ell = \min_k (d_{i_k} - o_k)$.
 Der Split (Stück 8) wählt auf der Riesentour die Zerlegung mit der kürzesten Strecke, deren Blöcke $\ell \ge$ jetzt und Last $\le Q$ erfüllen (die Zulässigkeit ist monoton in der Blockgröße).
 
