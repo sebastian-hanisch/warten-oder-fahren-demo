@@ -192,7 +192,7 @@ def verdict_threshold(cell, which: str = "fest") -> tuple[str, str]:
     rows = band_rows(cell, which)
     a, b = paired(rows, "W0S", "W0"), paired(rows, "WinfS", "Winf")
     text = (f"Bei {cell_phrase(cell)}: die Annahmeschwelle gegen „alles annehmen“ ist bei Sofort {level(a)} ({pair_text(a)}), beim Warten (Spätestens) {level(b)} ({pair_text(b)}). "
-            f"Die Zusatzstrecke hängt an der Abfahrtspolitik: unter Sofort fährt fast jeder Auftrag allein.")
+            f"Die Zusatzstrecke hängt an der Abfahrtspolitik: unter Sofort fährt oft ein Auftrag allein.")
     kind = "success" if level(b) == "besser" and level(a) != "besser" else "info"
     return kind, text
 

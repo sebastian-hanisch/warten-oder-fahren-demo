@@ -219,7 +219,7 @@ for c_ in C.CELLS:
     ta, tb = paired(band_rows(c_, "fest"), "WinfS", "Winf"), paired(band_rows(c_, "frisch"), "WinfS", "Winf")
     tab.append(f"| {cell_text(c_)} | {pair_text(a)} | {level(a)} | {pair_text(b)} | {level(b)} | {pair_text(ta)} | {pair_text(tb)} |")
 st.markdown("\n".join(tab))
-st.info("Der Vorteil des Wartens fällt auf den festen Instanzen mit der Rate (bei 12 Aufträgen je Stunde gleichauf), auf den frischen bleibt er dort bei rund +111: die Aussage „Warten bringt bei dichtem Strom nichts“ ist nicht robust.")
+st.info("Der Vorteil des Wartens sinkt auf den festen Instanzen mit der Rate (bei 12 Aufträgen je Stunde gleichauf, dort nicht nachweisbar), auf den frischen bleibt er dort bei rund +111: die Aussage „Warten bringt bei dichtem Strom nichts“ stützen nur die festen Instanzen und ist nicht robust.")
 
 st.markdown("---")
 
